@@ -40,18 +40,10 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v4
 
-    - name: Cache Go modules
-      uses: actions/cache@v2
-      with:
-        path: ~/.cache/go-build
-        key: ${{ runner.os }}-go-${{ hashFiles('**/go.sum') }}-${{ env.GO_VERSION }}
-        restore-keys: |
-          ${{ runner.os }}-go-${{ hashFiles('**/go.sum') }}
-
     - name: Run golangci-lint
       uses: golangci/golangci-lint-action@v6
       with:
-        version: v1.56.2
+        version: latest
   
   push:
     runs-on: ubuntu-latest
