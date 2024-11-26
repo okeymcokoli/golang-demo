@@ -1,0 +1,21 @@
+# Ingress resource for the application
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: golang-app
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  rules:
+  - host: golang-app.local
+    http:
+      paths: 
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: golang-app
+            port:
+              number: 80
+
+
